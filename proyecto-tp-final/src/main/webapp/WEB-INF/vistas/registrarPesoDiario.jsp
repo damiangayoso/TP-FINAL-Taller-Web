@@ -14,7 +14,7 @@
 
 		
 		<header class="header container">
-			<h1 class="logo">Registrar Peso Diario</h1>
+			<h1 class="logo">Control Nutricional</h1>
 			<nav>
                  <ul class="container">
                     <li><a href="home">Inicio</a></li>
@@ -26,28 +26,33 @@
 		</header>
 		<div class = "main container">	
 			<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-				
-			<form:form action="completarRegistroPesoDiario" method="POST" modelAttribute="registrarPesoDiarioDTO">
-				
-				<form:select path="idPaciente">
-				
-				<c:forEach items="${listaPacientes}" var = "i">
-				<form:option value="${i.id}">${i.nombre}</form:option>
-				</c:forEach>]
-					
-				</form:select>
-				<br>
-				<form:label path="peso">Peso</form:label>
-				<form:input path="peso" id="peso" type="number" class="form-control" required="required" placeholder="Exprese su peso en kilogramos" /> 
-				<br>
-				<button class="btn btn-lg btn-primary btn-block" Type="Submit">Confirmar</button>
-			
-			</form:form>
-			<%--Bloque que es visible si el elemento error no está vacío	--%>
-				<c:if test="${not empty error}">
-			        <h4><span>${error}</span></h4>
-			        <br>
-		        </c:if>	
+			<h3 class="form-signin-heading">Registrar Peso Diario</h3>
+				<br />
+				<c:choose>
+					<c:when test="${not empty error}">
+						<hr class="colorgraph"><br>
+						<%--Bloque que es visible si el elemento error no está vacío	--%>
+				        <h4><span style="color:red;">${error}</span></h4>
+				        <br>
+			        </c:when>
+			        <c:otherwise>
+						<form:form action="completarRegistroPesoDiario" method="POST" modelAttribute="registrarPesoDiarioDTO">
+							<form:select path="idPaciente">
+							
+							<c:forEach items="${listaPacientes}" var = "i">
+								<form:option value="${i.id}">${i.nombre}</form:option>
+							</c:forEach>]
+								
+							</form:select>
+							<br>
+							<form:label path="peso">Peso</form:label>
+							<form:input path="peso" id="peso" type="number" class="form-control" required="required" placeholder="Exprese su peso en kilogramos" /> 
+							<br>
+							<button class="btn btn-lg btn-primary btn-block" Type="Submit">Confirmar</button>
+						
+						</form:form>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 		
