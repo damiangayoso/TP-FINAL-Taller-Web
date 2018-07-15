@@ -19,7 +19,7 @@ public class RegistrarPesoDiarioDaoImpl implements RegistrarPesoDiarioDao{
     private SessionFactory sessionFactory;
 	
 	@Override
-	public RegistrarPesoDiarioDTO ConsultarRegistroFecha(int id, String fecha) {
+	public boolean ConsultarRegistroFecha(int id, String fecha) {
 		Long l = new Long(id);
 
 		final Session session = sessionFactory.getCurrentSession();
@@ -27,8 +27,10 @@ public class RegistrarPesoDiarioDaoImpl implements RegistrarPesoDiarioDao{
 											.add(Restrictions.eq("idPaciente", l))
 											.add(Restrictions.eq("fecha", fecha))
 											.uniqueResult();
-
-		return resultado;
+		if(resultado != null) {
+		return false;}
+		else {
+		return true;}
 	}
 	
 	@Override

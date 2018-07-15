@@ -89,7 +89,7 @@ public class ControladorProgresoPaciente {
 		}
 		
 		Plan plan = servicioPlan.consultarPlan(paciente.getPlanAsociado_id());
-		System.out.println("***************PRIMER BANDERA");
+
 		Formula formula = new Formula();
 		
 		Double pesoIdeal = formula.calcularPesoIdeal(paciente.getAltura(), paciente.getSexo());
@@ -112,12 +112,11 @@ public class ControladorProgresoPaciente {
 		int diasObjetivo = (int)(((pesoAPerderOGanar * 1000) * 7) / caloriasPGPorDia);
 		
 		List<ProgresoPesoIdeal> listaPesoIdeal = formula.generarListaPesoIdeal(paciente.getFecha_inicio(), diasObjetivo, paciente.getPeso(), caloriasPGPorDia);
-		System.out.println("***************SEGUNDA BANDERA");
+
 		List<CompararProgresoDTO> listaComparacion = formula.generarListaComparacion(servicioRegistrarPeso.ObtenerRegistros(idUsuario), listaPesoIdeal);
 		
 		model.put("Lista", listaComparacion);
 		model.put("pesoInicial", paciente.getPeso());
-		System.out.println("***************ULTIMA BANDERA");
 		return new ModelAndView("progresoPaciente", model);
 	}
 }

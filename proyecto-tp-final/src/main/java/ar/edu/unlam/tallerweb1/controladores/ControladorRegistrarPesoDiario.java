@@ -23,6 +23,10 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioRegistrarPesoDiario;
 public class ControladorRegistrarPesoDiario {
 	@Inject
 	private ServicioRegistrarPesoDiario servicioRegistrarPesoDiario;
+	
+	public void setServicioRegistrarPesoDiario(ServicioRegistrarPesoDiario servicioRegistrarPesoDiario) {
+		this.servicioRegistrarPesoDiario = servicioRegistrarPesoDiario;
+	}
 
 	@RequestMapping(path = "/registrarPesoDiario", method = RequestMethod.GET)
 	public ModelAndView irARegistroPesoDiario(HttpServletRequest request) {
@@ -43,16 +47,16 @@ public class ControladorRegistrarPesoDiario {
 		int id = registrarPesoDiarioDTO.getIdPaciente().intValue();
 		
 		registrarPesoDiarioDTO.setPeso((float)registrarPesoDiarioDTO.getPeso());
-		
+
 		Date fecha = new Date();
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		String f = dateFormat.format(fecha);
 		
-		RegistrarPesoDiarioDTO registroBuscado = servicioRegistrarPesoDiario.ConsultarRegistroFecha(id, f);
+		boolean registroBuscado = servicioRegistrarPesoDiario.ConsultarRegistroFecha(id, f);
 		
-		if(registroBuscado != null) {
+		if(registroBuscado != true) {
 			// si ya existe registro ese dia se le avisa que no puede ingresarlo nuevamente
-
+			
 			model.put("error", "Ya existe un registro en la fecha actual, vuelva mañana para ingresar un nuevo registro.");
 			return new ModelAndView("/registrarPesoDiario", model);
 		}

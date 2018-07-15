@@ -40,6 +40,7 @@ public class ControladorProgresoTestMock extends SpringTest {
 		miControlador.setServicioRegistrarPesoDiario(servicioRegistrarPesoMock);
 		
 		when(servicioPacientesMock.obtenerPaciente(any())).thenReturn(pacienteMock);
+		
 		when(pacienteMock.getAltura()).thenReturn((double)170);
 		when(pacienteMock.getSexo()).thenReturn("Hombre");
 		when(pacienteMock.getPeso()).thenReturn((double)80);
