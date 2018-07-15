@@ -53,7 +53,7 @@ public class ControladorProgresoTestMock extends SpringTest {
 
 		ModelAndView modelAndView = miControlador.verProgresoPaciente((long)1, requestMock);
 
-		assertThat(modelAndView.getViewName() ).isEqualTo("progresoPaciente");
+		assertThat(modelAndView.getViewName() ).isEqualTo("progresoPacienteFalla");
 			
 	}
 	
