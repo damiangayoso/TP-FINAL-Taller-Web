@@ -3,6 +3,12 @@ language: java
 notifications:
   email: false
 
+services:
+  - mysql
+  
+before_script:
+- mysql -e 'CREATE DATABASE db;'
+
 script: 
   - cd proyecto-tp-final
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+  - mvn install -B -V -e
