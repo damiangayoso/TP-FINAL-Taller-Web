@@ -20,6 +20,7 @@ public class Alimento {
 		super();
 		this.nombre = nombre;
 		this.caloriasPorPorcion = caloriasPorPorcion;
+		this.tipo = tipo;
 	}
 
 	public Long getId() {

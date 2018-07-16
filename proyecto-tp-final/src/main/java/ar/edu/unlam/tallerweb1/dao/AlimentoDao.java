@@ -10,4 +10,8 @@ public interface AlimentoDao {
 
 	List<Alimento> obtenerListadoDeAlimentos(String tipo);
 
+	void guardarAlimento(Alimento alimento);
+
+	Alimento getAlimentoById(Long id);
+
 }

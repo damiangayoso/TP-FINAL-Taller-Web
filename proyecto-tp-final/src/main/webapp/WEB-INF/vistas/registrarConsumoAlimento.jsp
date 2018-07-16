@@ -38,20 +38,37 @@
 			<div id="" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 			
 			<h3 class="">Registrar Comida</h3>
-			<form:form action="ConsumoAlimento" method="POST" modelAttribute="alimento">
-				<lavel for="comida">Comida</lavel>
-				<form:select id="comida" path="id" class="form-control">
-						<form:options itemValue="id" itemLabel="nombre" items="${listadoAlimentos}"></form:options>
-				</form:select>
-				<lavel for="bebida">Bebida</lavel>
-				<form:select id="bebida" path="id" class="form-control">
-						<form:options itemValue="id" itemLabel="nombre" items="${listadoBebidas}"></form:options>
-				</form:select>
-				<br>
-				<button class="btn btn-lg btn-primary btn-block" Type="Submit">Calcular Calorias</button>
 			
-			</form:form>
-			<%--Bloque que es visible si el elemento error no estÃ¡ vacÃ­o	--%>
+				<form:form action="ConsumoAlimento" method="POST" modelAttribute="alimentoDTO">
+				<div class="">
+					<lavel for="comida">Comida</lavel>
+					<form:select id="comida" path="comida.id" class="form-control">
+							<form:options itemValue="id" itemLabel="nombre" items="${listadoAlimentos}"></form:options>
+					</form:select>
+				</div>
+					<lavel for="cantComida">Cantidad</lavel>
+					<form:select id="cantComida" path="cantComida" class="form-control ">
+							<form:option  itemLabel="cantComida" value="1" label="1"></form:option>
+							<form:option  itemLabel="cantComida" value="2" label="2"></form:option>
+							<form:option  itemLabel="cantComida" value="3" label="3"></form:option>
+					</form:select>
+				
+				<br>
+					<lavel for="bebida">Bebida</lavel>
+					<form:select id="bebida" path="bebida.id" class="form-control">
+							<form:options itemValue="id" itemLabel="nombre" items="${listadoBebidas}"></form:options>
+					</form:select>
+					<lavel for="cantComida">Cantidad</lavel>
+					<form:select id="cantComida" path="cantComida" class="form-control">
+							<form:option  itemLabel="cantComida" value="1" label="1"></form:option>
+							<form:option  itemLabel="cantComida" value="2" label="2"></form:option>
+							<form:option  itemLabel="cantComida" value="3" label="3"></form:option>
+					</form:select>
+				<br>
+					<button class="btn btn-lg btn-primary btn-block" Type="Submit">Calcular Calorias</button>
+			
+				</form:form>
+			<%--Bloque que es visible si el elemento error no está vacío	--%>
 				<c:if test="${not empty error}">
 			        <h4><span>${error}</span></h4>
 			        <br>

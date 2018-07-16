@@ -5,6 +5,8 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,7 +27,7 @@ public class ControladorAlimento {
 		
 		ModelMap model = new ModelMap();
 		
-		model.put("alimento", new Alimento());
+		model.put("alimentoDTO", new AlimentoDTO());
 		
 		List<Alimento> listadoAlimentos = servicioAlimentos.obtenerListadoDeAlimentos("comida");
 		model.put("listadoAlimentos",listadoAlimentos);
@@ -37,12 +39,62 @@ public class ControladorAlimento {
 	}
 	
 	@RequestMapping(path = "/ConsumoAlimento", method = RequestMethod.POST)
-	public ModelAndView ConsumoAlimento(@ModelAttribute("alimento") Usuario alimento, HttpServletRequest request) {
+	public ModelAndView ConsumoAlimento(@ModelAttribute("alimentoDTO") AlimentoDTO alimentoDTO, HttpServletRequest request) {
 		ModelMap model = new ModelMap();
 
-		model.put("alimento",alimento);
+		Alimento comida = servicioAlimentos.getAlimentoById(alimentoDTO.getComida().getId());
+		model.put("comida",comida);
+		Alimento bebida = servicioAlimentos.getAlimentoById(alimentoDTO.getBebida().getId());
+		model.put("bebida",bebida);
 		
-		return new ModelAndView("registrarConsumoAlimento", model);
+		//System.out.println(newAlimento.getNombre() );
+		
+		return new ModelAndView("calorias", model);
+	}
+	
+	@RequestMapping(path = "/cargarAlimentos", method = RequestMethod.GET)
+	public ModelAndView cargarAlimentos() {
+
+		Alimento alimento1 = new Alimento("yogur descremado con cereal",150,"comida");
+		Alimento alimento2 = new Alimento("naranja",57,"comida" );
+		Alimento alimento3 = new Alimento("plato de ensalada lechuga y tomate",200,"comida");
+		Alimento alimento4 = new Alimento("2 mitades de tomate relleno con arroz integral, atún, aceituna y 2 cdas. de mayonesa light",250,"comida");
+		Alimento alimento5 = new Alimento("barrita de cereal light",94,"comida");
+		Alimento alimento6 = new Alimento("figazza árabe de salvado con queso fresco descremado y tomate",200,"comida");
+		Alimento alimento7 = new Alimento("plato de verduras cocidas a elección",150,"comida");
+		Alimento alimento8 = new Alimento("milanesa de soja",200,"comida");
+		Alimento alimento9 = new Alimento("porcion de gelatina diet con trozoz de fruta",30,"comida");
+		Alimento alimento10 = new Alimento("filet de pescado a la plancha con limon",130,"comida");
+		
+		Alimento bebida1 = new Alimento("vaso grande de jugo light",50,"bebida");
+		Alimento bebida2 = new Alimento("helado de agua",50,"bebida");
+		Alimento bebida3 = new Alimento("latita de gaseosa light",1,"bebida");
+		Alimento bebida4 = new Alimento("vaso de licuado de durazno con leche descremada",50,"bebida");
+		Alimento bebida5 = new Alimento("vaso de ensalada de frutas",50,"bebida");
+		Alimento bebida6 = new Alimento("licuado de melon y durazno con agua",50,"bebida");
+		Alimento bebida7 = new Alimento("infucion con media taza de leche descremada",50,"bebida");
+		Alimento bebida8 = new Alimento("taza de leche dscremada con 2 cdas de granola",50,"bebida");
+		
+		servicioAlimentos.guardarAlimento(alimento1);
+		servicioAlimentos.guardarAlimento(alimento2);
+		servicioAlimentos.guardarAlimento(alimento3);
+		servicioAlimentos.guardarAlimento(alimento4);
+		servicioAlimentos.guardarAlimento(alimento5);
+		servicioAlimentos.guardarAlimento(alimento6);
+		servicioAlimentos.guardarAlimento(alimento7);
+		servicioAlimentos.guardarAlimento(alimento8);
+		servicioAlimentos.guardarAlimento(alimento9);
+		servicioAlimentos.guardarAlimento(alimento10);
+		servicioAlimentos.guardarAlimento(bebida1);
+		servicioAlimentos.guardarAlimento(bebida2);
+		servicioAlimentos.guardarAlimento(bebida3);
+		servicioAlimentos.guardarAlimento(bebida4);
+		servicioAlimentos.guardarAlimento(bebida5);
+		servicioAlimentos.guardarAlimento(bebida6);
+		servicioAlimentos.guardarAlimento(bebida7);
+		servicioAlimentos.guardarAlimento(bebida8);
+			
+		return new ModelAndView("redirect:/registrarConsumoAlimento");
 	}
 	
 }

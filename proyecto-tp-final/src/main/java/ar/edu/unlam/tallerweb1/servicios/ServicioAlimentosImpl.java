@@ -26,4 +26,14 @@ public class ServicioAlimentosImpl implements ServicioAlimentos{
 	public List<Alimento> obtenerListadoDeAlimentos(String tipo) {
 		return alimentoDao.obtenerListadoDeAlimentos(tipo);
 	}
+	
+	@Override
+	public void guardarAlimento(Alimento alimento){
+		alimentoDao.guardarAlimento(alimento);
+	}
+	
+	@Override
+	public Alimento getAlimentoById(Long id){
+		return alimentoDao.getAlimentoById(id);
+	}
 }

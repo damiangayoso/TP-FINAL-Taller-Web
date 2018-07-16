@@ -9,5 +9,9 @@ public interface ServicioAlimentos {
 	List<Alimento> obtenerListadoDeAlimentos();
 	
 	List<Alimento> obtenerListadoDeAlimentos(String tipo);
+
+	void guardarAlimento(Alimento alimento);
+
+	Alimento getAlimentoById(Long id);
 	
 }
