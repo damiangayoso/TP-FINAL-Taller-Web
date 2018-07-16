@@ -18,4 +18,6 @@ public interface PacienteDao {
 	List<Paciente> obtenerListadoPacientes();
 	
 	Long getIdPlanByIdPaciente(Long id);
+	
+	public void cargarPacientesIniciales();
 }

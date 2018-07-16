@@ -50,9 +50,11 @@
 				        </c:when>
 				        <c:otherwise>
 							<form:form action="progresoPaciente" method="POST" modelAttribute="paciente">
-								<label>Paciente</label>
-								<form:select path="idUsuario" class="form-control">
-									<form:options itemValue="idUsuario" itemLabel="nombre" items="${listadoPacientes}"></form:options>
+								<label>Paciente</label>				
+								<form:select path="id" class="form-control">
+								<c:forEach items="${listadoPacientes}" var = "i">
+								<form:option value="${i.id}">${i.nombre}</form:option>
+								</c:forEach>]
 								</form:select>
 								<br />
 								<br />

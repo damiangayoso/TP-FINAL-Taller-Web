@@ -51,5 +51,84 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		}
 		
 	}
+	
+	@Override
+	public void cargarUsuariosIniciales() {
+		
+		final Session session = sessionFactory.getCurrentSession();
+		
+		Usuario doctor = new Usuario();
+		doctor.setNombre("Gonzalo");
+		doctor.setApellido("Garcia");
+		doctor.setEmail("gonzalogarcia@gmail.com");
+		doctor.setFechaNacimiento("20/03/1987");
+		doctor.setRol("medico");
+		doctor.setId((long)1);
+		doctor.setPassword("");
+		
+		Usuario doctor2 = new Usuario();
+		doctor2.setNombre("Gabriela");
+		doctor2.setApellido("Perez");
+		doctor2.setEmail("gabrielaperez@gmail.com");
+		doctor2.setFechaNacimiento("15/05/1990");
+		doctor2.setRol("medico");
+		doctor2.setId((long)2);
+		doctor2.setPassword("");
+		
+		session.save(doctor);
+		session.save(doctor2);
+		
+		Usuario paciente = new Usuario();
+		paciente.setNombre("Pedro");
+		paciente.setApellido("Smith");
+		paciente.setEmail("pedrosmith@gmail.com");
+		paciente.setFechaNacimiento("12/08/1993");
+		paciente.setRol("paciente");
+		paciente.setId((long)3);
+		paciente.setPassword("");
+		
+		Usuario paciente2 = new Usuario();
+		paciente2.setNombre("Jimena");
+		paciente2.setApellido("Atila");
+		paciente2.setEmail("jimenaatila@gmail.com");
+		paciente2.setFechaNacimiento("23/07/1995");
+		paciente2.setRol("paciente");
+		paciente2.setId((long)4);
+		paciente2.setPassword("");
+		
+		Usuario paciente3 = new Usuario();
+		paciente3.setNombre("Carlos");
+		paciente3.setApellido("Carrizo");
+		paciente3.setEmail("carloscarrizo@gmail.com");
+		paciente3.setFechaNacimiento("1/07/1988");
+		paciente3.setRol("paciente");
+		paciente3.setId((long)5);
+		paciente3.setPassword("");
+		
+		Usuario paciente4 = new Usuario();
+		paciente4.setNombre("Pamela");
+		paciente4.setApellido("Borges");
+		paciente4.setEmail("pamelaborges@gmail.com");
+		paciente4.setFechaNacimiento("11/11/1994");
+		paciente4.setRol("paciente");
+		paciente4.setId((long)6);
+		paciente4.setPassword("");
+		
+		Usuario paciente5 = new Usuario();
+		paciente5.setNombre("Pablo");
+		paciente5.setApellido("Garcia");
+		paciente5.setEmail("pablogarcia@gmail.com");
+		paciente5.setFechaNacimiento("20/02/1997");
+		paciente5.setRol("paciente");
+		paciente5.setId((long)7);
+		paciente5.setPassword("");
+		
+		session.save(paciente);
+		session.save(paciente2);
+		session.save(paciente3);
+		session.save(paciente4);
+		session.save(paciente5);
+
+	}
 
 }

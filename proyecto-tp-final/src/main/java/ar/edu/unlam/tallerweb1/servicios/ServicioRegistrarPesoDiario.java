@@ -12,4 +12,5 @@ public interface ServicioRegistrarPesoDiario {
 	void RegistrarPesoDiario(RegistrarPesoDiarioDTO registrarPesoDiarioDTO);
 	public List<RegistrarPesoDiarioDTO> ObtenerRegistros(Long id);
 	public List<Paciente> ObtenerPacientes(Long id);
+	public void cargarRegistrosIniciales();
 }

@@ -7,4 +7,5 @@ public interface ServicioLogin {
 
 	Usuario consultarUsuario(Usuario usuario);
 	boolean crearUsuario(Usuario usuario);
+	public void cargarUsuariosIniciales() ;
 }

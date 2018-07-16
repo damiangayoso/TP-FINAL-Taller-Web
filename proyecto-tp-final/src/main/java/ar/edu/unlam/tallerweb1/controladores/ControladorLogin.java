@@ -10,9 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.CargaDatosDePrueba;
 import ar.edu.unlam.tallerweb1.modelo.PacienteDTO;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
+import ar.edu.unlam.tallerweb1.servicios.ServicioPacientes;
+import ar.edu.unlam.tallerweb1.servicios.ServicioPlan;
+import ar.edu.unlam.tallerweb1.servicios.ServicioRegistrarPesoDiario;
 
 @Controller
 public class ControladorLogin {
@@ -22,6 +26,12 @@ public class ControladorLogin {
 	// @Service o @Repository y debe estar en un paquete de los indicados en applicationContext.xml
 	@Inject
 	private ServicioLogin servicioLogin;
+	
+	@Inject
+	private ServicioPacientes servicioPacientes;
+	
+	@Inject
+	private ServicioRegistrarPesoDiario servicioRegistrarPesoDiario;
 
 	// Este metodo escucha la URL localhost:8080/NOMBRE_APP/login si la misma es invocada por metodo http GET
 	@RequestMapping("/login")
@@ -74,7 +84,18 @@ public class ControladorLogin {
 
 	// Escucha la url /, y redirige a la URL /login, es lo mismo que si se invoca la url /login directamente.
 	@RequestMapping(path = "/", method = RequestMethod.GET)
-	public ModelAndView inicio() {
+	public ModelAndView inicio(HttpServletRequest request) {
+		//cargamos datos de prueba
+		
+		if(request.getSession().getAttribute("cargaInicial") == null ) {
+		servicioLogin.cargarUsuariosIniciales();
+		servicioPacientes.cargarPacientesIniciales();
+		servicioPacientes.insertarPlanesIniciales();
+		servicioRegistrarPesoDiario.cargarRegistrosIniciales();
+		request.getSession().setAttribute("cargaInicial", 1);
+		}
+		
+		//datos.cargarRegistroPesoDiario();
 		//esta es una cuenta dummy para facilitar las pruebas
 		Usuario usuario = new Usuario();
 		usuario.setEmail("root@root.com");

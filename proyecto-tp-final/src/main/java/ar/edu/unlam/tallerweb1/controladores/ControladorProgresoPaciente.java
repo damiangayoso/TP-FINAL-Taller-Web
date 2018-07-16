@@ -74,13 +74,13 @@ public class ControladorProgresoPaciente {
 	}
 	
 	@RequestMapping(path = "/progresoPaciente", method = RequestMethod.POST)
-	public ModelAndView verProgresoPaciente(@ModelAttribute("idUsuario") Long idUsuario, HttpServletRequest request) {
+	public ModelAndView verProgresoPaciente(@ModelAttribute("paciente") Paciente pacienteSelect, HttpServletRequest request) {
 		ModelMap model = new ModelMap();
 		
 		//Long longId = idUsuario;
 		//int id = longId.intValue();
 				
-		Paciente paciente = servicioPacientes.obtenerPaciente(idUsuario);
+		Paciente paciente = servicioPacientes.obtenerPaciente(pacienteSelect.getId());
 		
 		if(paciente == null) {
 			
@@ -113,7 +113,7 @@ public class ControladorProgresoPaciente {
 		
 		List<ProgresoPesoIdeal> listaPesoIdeal = formula.generarListaPesoIdeal(paciente.getFecha_inicio(), diasObjetivo, paciente.getPeso(), caloriasPGPorDia);
 
-		List<CompararProgresoDTO> listaComparacion = formula.generarListaComparacion(servicioRegistrarPeso.ObtenerRegistros(idUsuario), listaPesoIdeal);
+		List<CompararProgresoDTO> listaComparacion = formula.generarListaComparacion(servicioRegistrarPeso.ObtenerRegistros(pacienteSelect.getId()), listaPesoIdeal);
 		
 		model.put("Lista", listaComparacion);
 		model.put("pesoInicial", paciente.getPeso());

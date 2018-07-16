@@ -37,4 +37,9 @@ public class ServicioRegistrarPesoDiarioImpl implements ServicioRegistrarPesoDia
 	public List<Paciente> ObtenerPacientes(Long id) {
 		return registrarPesoDiarioDao.ObtenerPacientes(id);
 	}
+	
+	@Override
+	public void cargarRegistrosIniciales() {
+		registrarPesoDiarioDao.cargarRegistrosIniciales();
+	}
 }

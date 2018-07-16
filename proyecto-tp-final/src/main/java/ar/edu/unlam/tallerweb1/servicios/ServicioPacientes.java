@@ -25,4 +25,5 @@ public interface ServicioPacientes {
 
 	Long getIdPlanByIdPaciente(Long idPaciente);
 
+	public void cargarPacientesIniciales();
 }

@@ -8,4 +8,6 @@ public interface UsuarioDao {
 	Usuario consultarUsuario (Usuario usuario);
 	
 	boolean crearUsuario (Usuario usuario);
+	
+	public void cargarUsuariosIniciales();
 }
