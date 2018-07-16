@@ -1,8 +1,6 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 import javax.persistence.*;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 
 @Entity
 public class Alimento {

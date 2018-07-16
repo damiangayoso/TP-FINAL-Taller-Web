@@ -33,14 +33,16 @@
 			<div id="" class="mainbox col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
 			
 			<h3 class="">Registrar Comida</h3>
-			<form:form action="ConsumoAlimento" method="POST" modelAttribute="alimentoDTO">
+			<form:form action="registrarComida" method="POST" modelAttribute="alimentoDTO">
 				<lavel for="comida">Comida</lavel>
 				<br>
-					${comida.nombre} -> calorias: <b>${comida.caloriasPorPorcion} KiloCalorias</b>
+					${comida.nombre} -> Cantidad: ${cantComida} -> 
+					calorias:<b>${comida.caloriasPorPorcion*cantComida} KiloCalorias</b>
 				<br>
 				<lavel for="bebida">Bebida</lavel>
 				<br>
-					${bebida.nombre} -> calorias: <b>${bebida.caloriasPorPorcion} KiloCalorias</b>
+					${bebida.nombre} -> Cantidad: ${cantBebida} -> 
+					calorias: <b>${bebida.caloriasPorPorcion*cantBebida} KiloCalorias</b>
 				<br>
 						
 				

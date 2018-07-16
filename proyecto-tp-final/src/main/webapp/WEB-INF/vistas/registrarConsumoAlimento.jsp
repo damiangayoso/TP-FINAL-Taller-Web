@@ -48,9 +48,9 @@
 				</div>
 					<lavel for="cantComida">Cantidad</lavel>
 					<form:select id="cantComida" path="cantComida" class="form-control ">
-							<form:option  itemLabel="cantComida" value="1" label="1"></form:option>
-							<form:option  itemLabel="cantComida" value="2" label="2"></form:option>
-							<form:option  itemLabel="cantComida" value="3" label="3"></form:option>
+							<form:option  value="1" label="1"></form:option>
+							<form:option  value="2" label="2"></form:option>
+							<form:option  value="3" label="3"></form:option>
 					</form:select>
 				
 				<br>
@@ -58,11 +58,11 @@
 					<form:select id="bebida" path="bebida.id" class="form-control">
 							<form:options itemValue="id" itemLabel="nombre" items="${listadoBebidas}"></form:options>
 					</form:select>
-					<lavel for="cantComida">Cantidad</lavel>
-					<form:select id="cantComida" path="cantComida" class="form-control">
-							<form:option  itemLabel="cantComida" value="1" label="1"></form:option>
-							<form:option  itemLabel="cantComida" value="2" label="2"></form:option>
-							<form:option  itemLabel="cantComida" value="3" label="3"></form:option>
+					<lavel for="cantBebida">Cantidad</lavel>
+					<form:select id="cantBebida" path="cantBebida" class="form-control">
+							<form:option  value="1" label="1"></form:option>
+							<form:option  value="2" label="2"></form:option>
+							<form:option  value="3" label="3"></form:option>
 					</form:select>
 				<br>
 					<button class="btn btn-lg btn-primary btn-block" Type="Submit">Calcular Calorias</button>

@@ -168,6 +168,7 @@ public class ControladorPaciente {
 		
 		//agregamos el id del medico asociado a este paciente
 		paciente.setMedicoAsociado_id((Long) request.getSession().getAttribute("ID"));
+		paciente.setIdUsuario((Long) request.getSession().getAttribute("idUsuario"));
 		
 		//seteamos el nombre del paciente
 		String nombrePaciente= (String) request.getSession().getAttribute("NOMBRE_PACIENTE");

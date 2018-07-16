@@ -46,7 +46,10 @@ public class ControladorAlimento {
 		model.put("comida",comida);
 		Alimento bebida = servicioAlimentos.getAlimentoById(alimentoDTO.getBebida().getId());
 		model.put("bebida",bebida);
-		
+		int cantComida=alimentoDTO.getCantComida();
+		model.put("cantComida", cantComida);
+		int cantBebida=alimentoDTO.getCantBebida();
+		model.put("cantBebida", cantBebida);
 		//System.out.println(newAlimento.getNombre() );
 		
 		return new ModelAndView("calorias", model);
