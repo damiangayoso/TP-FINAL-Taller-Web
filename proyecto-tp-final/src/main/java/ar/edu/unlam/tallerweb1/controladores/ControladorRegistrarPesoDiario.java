@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
+
+import ar.edu.unlam.tallerweb1.modelo.Paciente;
 import ar.edu.unlam.tallerweb1.modelo.RegistrarPesoDiarioDTO;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRegistrarPesoDiario;
 
@@ -32,8 +34,15 @@ public class ControladorRegistrarPesoDiario {
 	public ModelAndView irARegistroPesoDiario(HttpServletRequest request) {
 		ModelMap model = new ModelMap();
 		RegistrarPesoDiarioDTO registrarPesoDiarioDTO = new RegistrarPesoDiarioDTO();
-		model.put("registrarPesoDiarioDTO",registrarPesoDiarioDTO);
-		model.put("listaPacientes",servicioRegistrarPesoDiario.ObtenerPacientes((Long) request.getSession().getAttribute("ID")));
+		
+		List<Paciente> listadoPacientes = servicioRegistrarPesoDiario.ObtenerPacientes((Long) request.getSession().getAttribute("ID"));
+		if(listadoPacientes.isEmpty()) {
+			String error = "No hay pacientes cargados en el sistema asignados al nutricionista.";
+			model.put("error", error);
+		}
+		model.put("registrarPesoDiarioDTO", registrarPesoDiarioDTO);
+		model.put("listaPacientes", listadoPacientes);
+		
 		return new ModelAndView("registrarPesoDiario", model);
 	}
 	
