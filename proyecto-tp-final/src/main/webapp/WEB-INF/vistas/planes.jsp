@@ -16,9 +16,15 @@
             <nav>
                  <ul class="container">
                     <li><a href="home">Inicio</a></li>
-                    <li><a class="btn active white" href="#">Elegir Plan Nutricional</a></li>
-                    <li><a href="registrarPesoDiario">Registrar Peso Diario</a></li>
-                    <li><a href="progresoSeleccionarPaciente">Ver Progreso</a></li>
+                    <c:if test="${ROL=='medico'}" >
+                    	<li><a class="btn" href="registrarusuario">Registrar Paciente</a></li>  
+                    	<li><a class="btn" href="registrarPesoDiario">Registrar Peso Diario</a></li>
+                   		<li><a class="btn" href="progresoSeleccionarPaciente">Ver Progreso</a></li>
+                   	</c:if>
+                    <c:if test="${ROL!='medico'}" >
+                    	<li><a class="btn" href="verplan">Ver Plan</a></li>
+                    	<li><a class="btn" href="registrarConsumoAlimento">Registrar Comida</a></li>
+                    </c:if>
                 </ul>
             </nav>
 		</header>
