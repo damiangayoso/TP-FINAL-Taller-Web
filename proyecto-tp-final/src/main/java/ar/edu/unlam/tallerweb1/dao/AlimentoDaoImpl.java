@@ -67,4 +67,17 @@ public class AlimentoDaoImpl implements AlimentoDao{
 		Session session = sessionFactory.getCurrentSession();
 		session.save(registro);		
 	}
+	
+	@Override @SuppressWarnings("unchecked")
+	public List<HistorialComidas>  obtenerRegistroComidas(Long idPaciente) {
+		
+		Session session = sessionFactory.getCurrentSession();
+		List<HistorialComidas> registro=
+		(List<HistorialComidas>) session.createCriteria(HistorialComidas.class)
+		.add(Restrictions.eq("idPaciente", idPaciente) )
+		.list();
+		
+		return registro;
+	}
+	
 }

@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -42,4 +43,10 @@ public class ServicioAlimentosImpl implements ServicioAlimentos{
 	public void guardarRegistroComida(HistorialComidas registro) {
 		alimentoDao.guardarRegistroComida(registro);	
 	}
+	
+	@Override
+	public List<HistorialComidas> obtenerRegistroComidas(Long idPaciente) {
+		return alimentoDao.obtenerRegistroComidas(idPaciente);	
+	}
+	
 }

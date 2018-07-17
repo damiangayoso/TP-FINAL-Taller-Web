@@ -1,8 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 	<head>
 	<!-- Bootstrap core CSS -->
@@ -15,40 +13,58 @@
 		
 		<header class="header container">
 			<h1 class="logo">Control Nutricional</h1>
-			
-			<nav>
+            <nav>
                  <ul class="container">
                     <li><a class="btn" href="home">Inicio</a></li>
+                    <c:if test="${ROL=='medico'}" >
+                    	<li><a class="btn" href="registrarusuario">Registrar Paciente</a></li>  
+                    	<li><a class="btn" href="registrarPesoDiario">Registrar Peso Diario</a></li>
+                   		<li><a class="btn" href="progresoSeleccionarPaciente">Ver Progreso</a></li>
+                   	</c:if>
                     <c:if test="${ROL!='medico'}" >
                     	<li><a class="btn" href="verplan">Ver Plan</a></li>
-                   		<li><a class="btn active white"  href="registrarConsumoAlimento">Registrar Comida</a></li>
-                     </c:if>
+                    	<li><a class="btn" href="registrarConsumoAlimento">Registrar Comida</a></li>
+                    	<li><a class="btn active white" href="historialDeComidas">Historial Comidas</a></li>
+                    </c:if>
                 </ul>
             </nav>
-            
 		</header>
-	
-		<div class = "main container">	
 		
-			<div id="" class="mainbox col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+		<div class = "main container">
+		
+		<div id="table" class="mainbox col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
 			
-			<h3 class="">Historial de Comidas</h3>
-			
+			<h3> Historial de Comidas</h3>
+			<h4></h4> 
 
-				<br>
-					Total de Calorias: ${totalCalorias}
-				
-				<br>
-			
-			
-			
-			<%--Bloque que es visible si el elemento error no está vacío	--%>
-				<c:if test="${not empty error}">
-			        <h4><span>${error}</span></h4>
-			        <br>
-		        </c:if>	
-			</div>
+        <table id="acrylic">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Hora</th>  
+                    <th>Comida</th>
+                    <th>Bebida</th>
+                    <th>KCal</th>    
+                </tr>
+            </thead>
+            
+            <tbody>
+                
+                <c:forEach items="${listaRegistros}" var="reg">
+                <tr>
+                    <td>${reg.fecha}</td>
+                    <td>${reg.hora}</td>
+                    <td>${reg.comida} (x${reg.cantComida})</td>
+                    <td>${reg.bebida} (x${reg.cantBebida})</td>
+                    <td>${reg.totalCalorias}</td>
+                </tr>
+                </c:forEach>
+                
+            </tbody>
+        </table>
 		</div>
+	  	    
+	  </div>
 		
 		<jsp:include page="footer.jsp"></jsp:include>
 		

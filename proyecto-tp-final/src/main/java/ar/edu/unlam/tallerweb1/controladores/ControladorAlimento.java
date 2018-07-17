@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -109,11 +110,13 @@ public class ControladorAlimento {
 //		System.out.println(idPaciente);
 //		System.out.println(fechaFormateada);
 //		System.out.println(hora);
-		
+	    
 		HistorialComidas registroComida=new HistorialComidas();
 		registroComida.setIdPaciente(idPaciente);
-		registroComida.setIdAlimentoComida(alimentoDTO.getComida().getId());
-		registroComida.setIdAlimentoBebida(alimentoDTO.getBebida().getId());
+		registroComida.setIdAlimentoComida(alimentoDTO.getComida().getId() );
+		registroComida.setIdAlimentoBebida(alimentoDTO.getBebida().getId() );
+		registroComida.setComida(comida.getNombre() );
+		registroComida.setBebida(bebida.getNombre() );
 		registroComida.setCantComida(cantComida);
 		registroComida.setCantBebida(cantBebida);
 		registroComida.setTotalCalorias(totalCalorias);
@@ -122,7 +125,25 @@ public class ControladorAlimento {
 		
 		servicioAlimentos.guardarRegistroComida(registroComida);
 		
-		return new ModelAndView("historialDeComidas", model);
+		return new ModelAndView("home", model);
+	}
+	
+	@RequestMapping(path = "/historialDeComidas", method = RequestMethod.GET)
+	public ModelAndView irHistorialDeComidas() {
+		ModelMap model = new ModelMap();
+		
+		//obtenemos el id del Usuario directamente de la session
+		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		Long idPaciente = (Long) attr.getRequest().getSession().getAttribute("idUsuario");
+		
+		List<HistorialComidas> listaRegistros= new ArrayList<HistorialComidas>();
+		
+		listaRegistros=servicioAlimentos.obtenerRegistroComidas(idPaciente);
+		
+		model.put("listaRegistros", listaRegistros);
+		
+		return new ModelAndView("historialDeComidas",model);
+	
 	}
 	
 	

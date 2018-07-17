@@ -26,6 +26,10 @@
                     	<li><a class="btn" href="verplan">Ver Plan</a></li>
                     	<li><a class="btn" href="registrarConsumoAlimento">Registrar Comida</a></li>
                     </c:if>
+                    	
+                    <c:if test="${idUsuario!=null}">
+                    	<li><a class="btn" href="historialDeComidas">Historial Comidas</a></li>
+                    </c:if>
                 </ul>
             </nav>
 		</header>

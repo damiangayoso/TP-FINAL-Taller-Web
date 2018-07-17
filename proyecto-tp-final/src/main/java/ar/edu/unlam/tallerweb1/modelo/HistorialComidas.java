@@ -10,6 +10,8 @@ public class HistorialComidas {
 	private Long idPaciente;
 	private Long IdAlimentoComida;
 	private Long IdAlimentoBebida;
+	private String comida;
+	private String bebida;
 	private int cantComida;
 	private int cantBebida;
 	private int totalCalorias;
@@ -39,6 +41,18 @@ public class HistorialComidas {
 	}
 	public void setIdAlimentoBebida(Long idAlimentoBebida) {
 		IdAlimentoBebida = idAlimentoBebida;
+	}
+	public String getComida() {
+		return comida;
+	}
+	public void setComida(String comida) {
+		this.comida = comida;
+	}
+	public String getBebida() {
+		return bebida;
+	}
+	public void setBebida(String bebida) {
+		this.bebida = bebida;
 	}
 	public int getCantComida() {
 		return cantComida;

@@ -24,6 +24,7 @@
                     <c:if test="${ROL!='medico'}" >
                     	<li><a class="btn" href="verplan">Ver Plan</a></li>
                     	<li><a class="btn" href="registrarConsumoAlimento">Registrar Comida</a></li>
+                    	<li><a class="btn" href="historialDeComidas">Historial Comidas</a></li>
                     </c:if>
                 </ul>
             </nav>
