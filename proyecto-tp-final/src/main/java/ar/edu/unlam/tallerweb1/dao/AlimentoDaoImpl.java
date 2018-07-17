@@ -60,4 +60,11 @@ public class AlimentoDaoImpl implements AlimentoDao{
 				.uniqueResult();
 		return alimento;
 	}
+	
+	@Override
+	public void guardarRegistroComida(HistorialComidas registro) {
+		
+		Session session = sessionFactory.getCurrentSession();
+		session.save(registro);		
+	}
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.hibernate.Session;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,5 +36,10 @@ public class ServicioAlimentosImpl implements ServicioAlimentos{
 	@Override
 	public Alimento getAlimentoById(Long id){
 		return alimentoDao.getAlimentoById(id);
+	}
+	
+	@Override
+	public void guardarRegistroComida(HistorialComidas registro) {
+		alimentoDao.guardarRegistroComida(registro);	
 	}
 }

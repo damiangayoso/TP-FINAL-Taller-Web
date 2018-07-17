@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.dao;
 import java.util.List;
 
 import ar.edu.unlam.tallerweb1.modelo.Alimento;
+import ar.edu.unlam.tallerweb1.modelo.HistorialComidas;
 
 public interface AlimentoDao {
 
@@ -13,5 +14,7 @@ public interface AlimentoDao {
 	void guardarAlimento(Alimento alimento);
 
 	Alimento getAlimentoById(Long id);
+
+	void guardarRegistroComida(HistorialComidas registro);
 
 }

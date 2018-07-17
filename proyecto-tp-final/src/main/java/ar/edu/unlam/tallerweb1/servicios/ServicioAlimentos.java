@@ -13,5 +13,7 @@ public interface ServicioAlimentos {
 	void guardarAlimento(Alimento alimento);
 
 	Alimento getAlimentoById(Long id);
+
+	void guardarRegistroComida(HistorialComidas registro);
 	
 }

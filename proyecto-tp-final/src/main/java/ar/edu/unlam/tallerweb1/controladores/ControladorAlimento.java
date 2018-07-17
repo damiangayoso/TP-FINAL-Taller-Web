@@ -84,32 +84,43 @@ public class ControladorAlimento {
 		int cantComida=alimentoDTO.getCantComida();
 		int cantBebida=alimentoDTO.getCantBebida();
 		int totalCalorias=alimentoDTO.getTotalCalorias();
+		
 		//obtenemos el id del Usuario directamente de la session
 		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 		Long idPaciente = (Long) attr.getRequest().getSession().getAttribute("idUsuario");
 
-		//Obtenemos la fecha actual y en formato LocalDate
+		//Obtenemos la fecha actual en formato LocalDate y lo convertimos a String
 		LocalDate fechaHoy = LocalDate.now();
-		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	    String fechaFormateada = fechaHoy.format(formato);
-		//Obtenemos la hora actual y en formato LocalDate
-	    Date fechaActual = new Date ();
-	    DateFormat hourFormat = new SimpleDateFormat("HH:mm:ss");
-	    String hora=hourFormat.format(fechaActual);
-
-	    //String hora=dfLocal.format(dtFechaActual);
+		DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	    String fechaFormateada = fechaHoy.format(formatoFecha);
 	    
+		//Obtenemos la hora actual en formato Date y lo convertimos a String
+	    Date fechaActual = new Date ();
+	    DateFormat formatoHora = new SimpleDateFormat("HH:mm:ss");
+	    String hora=formatoHora.format(fechaActual);
 		
-		System.out.println(comida.getNombre() );
-		System.out.println(cantComida );
-		System.out.println(comida.getCaloriasPorPorcion() );
-		System.out.println(bebida.getNombre() );
-		System.out.println(cantBebida );
-		System.out.println(bebida.getCaloriasPorPorcion() );
-		System.out.println(totalCalorias);
-		System.out.println(idPaciente);
-		System.out.println(fechaFormateada);
-		System.out.println(hora);
+//		System.out.println(comida.getNombre() );
+//		System.out.println(cantComida );
+//		System.out.println(comida.getCaloriasPorPorcion() );
+//		System.out.println(bebida.getNombre() );
+//		System.out.println(cantBebida );
+//		System.out.println(bebida.getCaloriasPorPorcion() );
+//		System.out.println(totalCalorias);
+//		System.out.println(idPaciente);
+//		System.out.println(fechaFormateada);
+//		System.out.println(hora);
+		
+		HistorialComidas registroComida=new HistorialComidas();
+		registroComida.setIdPaciente(idPaciente);
+		registroComida.setIdAlimentoComida(alimentoDTO.getComida().getId());
+		registroComida.setIdAlimentoBebida(alimentoDTO.getBebida().getId());
+		registroComida.setCantComida(cantComida);
+		registroComida.setCantBebida(cantBebida);
+		registroComida.setTotalCalorias(totalCalorias);
+		registroComida.setFecha(fechaFormateada);
+		registroComida.setHora(hora);
+		
+		servicioAlimentos.guardarRegistroComida(registroComida);
 		
 		return new ModelAndView("historialDeComidas", model);
 	}
@@ -121,7 +132,7 @@ public class ControladorAlimento {
 		Alimento alimento1 = new Alimento("yogur descremado con cereal",150,"comida");
 		Alimento alimento2 = new Alimento("naranja",57,"comida" );
 		Alimento alimento3 = new Alimento("plato de ensalada lechuga y tomate",200,"comida");
-		Alimento alimento4 = new Alimento("2 mitades de tomate relleno con arroz integral, atún, aceituna y 2 cdas. de mayonesa light",250,"comida");
+		Alimento alimento4 = new Alimento("mitad de tomate relleno con arroz integral, atún, aceituna y 2 cdas. de mayonesa light",250,"comida");
 		Alimento alimento5 = new Alimento("barrita de cereal light",94,"comida");
 		Alimento alimento6 = new Alimento("figazza árabe de salvado con queso fresco descremado y tomate",200,"comida");
 		Alimento alimento7 = new Alimento("plato de verduras cocidas a elección",150,"comida");
@@ -129,6 +140,7 @@ public class ControladorAlimento {
 		Alimento alimento9 = new Alimento("porcion de gelatina diet con trozoz de fruta",30,"comida");
 		Alimento alimento10 = new Alimento("filet de pescado a la plancha con limon",130,"comida");
 		
+		Alimento bebida0 = new Alimento("nada",0,"bebida");
 		Alimento bebida1 = new Alimento("vaso grande de jugo light",50,"bebida");
 		Alimento bebida2 = new Alimento("helado de agua",50,"bebida");
 		Alimento bebida3 = new Alimento("latita de gaseosa light",1,"bebida");
@@ -148,6 +160,7 @@ public class ControladorAlimento {
 		servicioAlimentos.guardarAlimento(alimento8);
 		servicioAlimentos.guardarAlimento(alimento9);
 		servicioAlimentos.guardarAlimento(alimento10);
+		servicioAlimentos.guardarAlimento(bebida0);
 		servicioAlimentos.guardarAlimento(bebida1);
 		servicioAlimentos.guardarAlimento(bebida2);
 		servicioAlimentos.guardarAlimento(bebida3);
