@@ -15,6 +15,7 @@ public class HistorialComidas {
 	private int totalCalorias;
 	private String fecha;
 	private String hora;
+	
 	public Long getId() {
 		return Id;
 	}

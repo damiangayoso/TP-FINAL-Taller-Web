@@ -37,7 +37,7 @@
 		
 			<div id="" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 			
-			<h3 class="">Registrar Comida</h3>
+			<h3 class="">Elegir Comida</h3>
 			
 				<form:form action="ConsumoAlimento" method="POST" modelAttribute="alimentoDTO">
 				<div class="">

@@ -6,6 +6,7 @@ public class AlimentoDTO {
 	private Alimento bebida;
 	private int cantComida;
 	private int cantBebida;
+	private int totalCalorias;
 	
 	public AlimentoDTO() {}
 
@@ -39,6 +40,14 @@ public class AlimentoDTO {
 
 	public void setCantBebida(int cantBebida) {
 		this.cantBebida = cantBebida;
+	}
+
+	public int getTotalCalorias() {
+		return totalCalorias;
+	}
+
+	public void setTotalCalorias(int totalCalorias) {
+		this.totalCalorias = totalCalorias;
 	}
 	
 }

@@ -1,5 +1,10 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,6 +17,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.*;
@@ -50,10 +57,63 @@ public class ControladorAlimento {
 		model.put("cantComida", cantComida);
 		int cantBebida=alimentoDTO.getCantBebida();
 		model.put("cantBebida", cantBebida);
-		//System.out.println(newAlimento.getNombre() );
+		
+		alimentoDTO.setComida(comida);
+		alimentoDTO.setBebida(bebida);
+		alimentoDTO.setCantComida(cantComida);
+		alimentoDTO.setCantBebida(cantBebida);
+		
+		int totalCalorias=alimentoDTO.getComida().caloriasPorPorcion * cantComida + alimentoDTO.getBebida().getCaloriasPorPorcion()*cantBebida;
+		model.put("totalCalorias", totalCalorias);
+		
+		alimentoDTO.setTotalCalorias(totalCalorias);
+		
+		model.put("alimentoDTO", alimentoDTO);
+		
+		//System.out.println(totalCalorias );
 		
 		return new ModelAndView("calorias", model);
 	}
+	
+	@RequestMapping(path = "/registrarComida", method = RequestMethod.POST)
+	public ModelAndView registrarComida(@ModelAttribute("alimentoDTO") AlimentoDTO alimentoDTO, HttpServletRequest request) {
+		
+		ModelMap model = new ModelMap();
+		Alimento comida=servicioAlimentos.getAlimentoById(alimentoDTO.getComida().getId());
+		Alimento bebida=servicioAlimentos.getAlimentoById(alimentoDTO.getBebida().getId());
+		int cantComida=alimentoDTO.getCantComida();
+		int cantBebida=alimentoDTO.getCantBebida();
+		int totalCalorias=alimentoDTO.getTotalCalorias();
+		//obtenemos el id del Usuario directamente de la session
+		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		Long idPaciente = (Long) attr.getRequest().getSession().getAttribute("idUsuario");
+
+		//Obtenemos la fecha actual y en formato LocalDate
+		LocalDate fechaHoy = LocalDate.now();
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	    String fechaFormateada = fechaHoy.format(formato);
+		//Obtenemos la hora actual y en formato LocalDate
+	    Date fechaActual = new Date ();
+	    DateFormat hourFormat = new SimpleDateFormat("HH:mm:ss");
+	    String hora=hourFormat.format(fechaActual);
+
+	    //String hora=dfLocal.format(dtFechaActual);
+	    
+		
+		System.out.println(comida.getNombre() );
+		System.out.println(cantComida );
+		System.out.println(comida.getCaloriasPorPorcion() );
+		System.out.println(bebida.getNombre() );
+		System.out.println(cantBebida );
+		System.out.println(bebida.getCaloriasPorPorcion() );
+		System.out.println(totalCalorias);
+		System.out.println(idPaciente);
+		System.out.println(fechaFormateada);
+		System.out.println(hora);
+		
+		return new ModelAndView("historialDeComidas", model);
+	}
+	
 	
 	@RequestMapping(path = "/cargarAlimentos", method = RequestMethod.GET)
 	public ModelAndView cargarAlimentos() {
