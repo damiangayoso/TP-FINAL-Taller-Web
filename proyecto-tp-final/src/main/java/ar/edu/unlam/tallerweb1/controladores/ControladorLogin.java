@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.Paciente;
 import ar.edu.unlam.tallerweb1.modelo.PacienteDTO;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
@@ -78,7 +81,47 @@ public class ControladorLogin {
 	// Escucha la URL /home por GET, y redirige a una vista.
 	@RequestMapping(path = "/home", method = RequestMethod.GET)
 	public ModelAndView irAHome() {
-		return new ModelAndView("home");
+		
+			ModelMap model = new ModelMap();
+			
+			Paciente paciente = new Paciente();
+			model.put("paciente", paciente);
+			
+			// servicio para obtener listado de pacientes
+			List<Paciente> listadoPacientes = servicioPacientes.obtenerListadoPacientes();
+			
+			if(listadoPacientes.isEmpty()) {
+				String error = "No hay pacientes cargados en el sistema.";
+				model.put("error", error);
+			}
+			
+			model.put("listadoPacientes", listadoPacientes);
+			
+			return new ModelAndView("home", model);
+		
+	}
+	
+	@RequestMapping(path = "/selectPaciente", method = RequestMethod.POST)
+	public ModelAndView selectPaciente(@ModelAttribute("paciente") Paciente paciente, HttpServletRequest request) {
+		ModelMap model = new ModelMap();
+
+		paciente=servicioPacientes.obtenerPaciente(paciente.getId() );
+		model.put("paciente", paciente);
+		
+		// servicio para obtener listado de pacientes
+		List<Paciente> listadoPacientes = servicioPacientes.obtenerListadoPacientes();
+		
+		if(listadoPacientes.isEmpty()) {
+			String error = "No hay pacientes cargados en el sistema.";
+			model.put("error", error);
+		}
+		
+		request.getSession().setAttribute("idUsuario", paciente.getId() );
+		request.getSession().setAttribute("NOMBRE_PACIENTE", paciente.getNombre() );
+		
+		model.put("listadoPacientes", listadoPacientes);
+		
+		return new ModelAndView("home", model);
 	}
 
 	// Escucha la url /, y redirige a la URL /login, es lo mismo que si se invoca la url /login directamente.
@@ -86,13 +129,13 @@ public class ControladorLogin {
 	public ModelAndView inicio(HttpServletRequest request) {
 		//cargamos datos de prueba
 		
-		if(request.getSession().getAttribute("cargaInicial") == null ) {
-		servicioLogin.cargarUsuariosIniciales();
-		servicioPacientes.cargarPacientesIniciales();
-		servicioPacientes.insertarPlanesIniciales();
-		servicioRegistrarPesoDiario.cargarRegistrosIniciales();
-		request.getSession().setAttribute("cargaInicial", 1);
-		}
+//		if(request.getSession().getAttribute("cargaInicial") == null ) {
+//		servicioLogin.cargarUsuariosIniciales();
+//		servicioPacientes.cargarPacientesIniciales();
+//		servicioPacientes.insertarPlanesIniciales();
+//		servicioRegistrarPesoDiario.cargarRegistrosIniciales();
+//		request.getSession().setAttribute("cargaInicial", 1);
+//		}
 		
 		//datos.cargarRegistroPesoDiario();
 		//esta es una cuenta dummy para facilitar las pruebas

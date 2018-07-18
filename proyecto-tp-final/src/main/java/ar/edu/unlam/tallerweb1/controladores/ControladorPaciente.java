@@ -26,7 +26,7 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioPacientes;
 public class ControladorPaciente {
 	
 	@Inject
-	private ServicioPacientes ServicioPacientes;
+	private ServicioPacientes servicioPacientes;
 	
 	@RequestMapping(path = "/paciente", method = RequestMethod.GET)
 	public ModelAndView irAPaciente() {
@@ -91,7 +91,7 @@ public class ControladorPaciente {
 		// Llama al servicio que inserta los planes iniciales hasta que desarrollemos el ABM de planes
 		//ServicioPacientes.insertarPlanesIniciales();
 		
-		List<Plan> planesSugeridos = ServicioPacientes.obtenerPlanesFiltrados(pacienteDTO.getIntensidad(), pacienteDTO.isAptoCeliaco(), 
+		List<Plan> planesSugeridos = servicioPacientes.obtenerPlanesFiltrados(pacienteDTO.getIntensidad(), pacienteDTO.isAptoCeliaco(), 
 				pacienteDTO.isAptoHipertenso(), pacienteDTO.isExcluirCarne(), pacienteDTO.isExcluirLacteos());
 
 		if (planesSugeridos.isEmpty()) {
@@ -109,7 +109,7 @@ public class ControladorPaciente {
 		ModelMap model = new ModelMap();
 		
 		// Aca completa con los datos del plan elegido, haciendo un llamado a la BD mediante el ID
-		Plan planElegido = ServicioPacientes.consultarPlan(pacienteDTO.getPlan().getId());
+		Plan planElegido = servicioPacientes.consultarPlan(pacienteDTO.getPlan().getId());
 		pacienteDTO.setPlan(planElegido);
 		
 		Paciente paciente = pacienteDTO.getPaciente();
@@ -176,8 +176,12 @@ public class ControladorPaciente {
 		paciente.setNombre(nombrePaciente);
 		
 		// Llama al servicio que inserta el paciente en la BD
-		ServicioPacientes.registrarPaciente(paciente);
+		servicioPacientes.registrarPaciente(paciente);
+		model.put("paciente",paciente);
 		
+		// servicio para obtener listado de pacientes
+		List<Paciente> listadoPacientes = servicioPacientes.obtenerListadoPacientes();
+		model.put("listadoPacientes", listadoPacientes);
 		
 		return new ModelAndView("/home", model);
 	}
