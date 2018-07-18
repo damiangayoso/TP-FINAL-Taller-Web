@@ -70,7 +70,12 @@ public class ControladorLogin {
 			request.getSession().setAttribute("EMAIL", usuarioBuscado.getEmail());
 			request.getSession().setAttribute("ID", usuarioBuscado.getId());
 			request.getSession().setAttribute("APELLIDO", usuarioBuscado.getApellido());
-			return new ModelAndView("redirect:/home");
+			
+			// servicio para obtener listado de pacientes
+			List<Paciente> listadoPacientes = servicioPacientes.obtenerListadoPacientes();
+			model.put("listadoPacientes", listadoPacientes);
+			
+			return new ModelAndView("home",model);
 		} else {
 			// si el usuario no existe agrega un mensaje de error en el modelo.
 			model.put("error", "Usuario o clave incorrecta");
