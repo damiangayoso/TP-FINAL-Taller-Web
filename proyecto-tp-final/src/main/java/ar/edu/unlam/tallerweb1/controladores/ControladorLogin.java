@@ -73,6 +73,7 @@ public class ControladorLogin {
 			
 			// servicio para obtener listado de pacientes
 			List<Paciente> listadoPacientes = servicioPacientes.obtenerListadoPacientes();
+			model.put("paciente",new Paciente() );
 			model.put("listadoPacientes", listadoPacientes);
 			
 			return new ModelAndView("home",model);
