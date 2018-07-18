@@ -62,11 +62,11 @@ public class ControladorLogin {
 		if (usuarioBuscado != null) {
 			request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
 			
-			if(usuarioBuscado.getRol().equals("paciente")){
-				request.getSession().setAttribute("idUsuario", usuarioBuscado.getId() );
-				request.getSession().setAttribute("APELLIDO_PACIENTE", usuario.getApellido() );
-				request.getSession().setAttribute("NOMBRE_PACIENTE", usuario.getNombre() );
-			}
+		//if(usuarioBuscado.getRol().equals("paciente")){
+			request.getSession().setAttribute("idUsuario", usuarioBuscado.getId() );
+			request.getSession().setAttribute("APELLIDO_PACIENTE", usuario.getApellido() );
+			request.getSession().setAttribute("NOMBRE_PACIENTE", usuario.getNombre() );
+		//}
 			request.getSession().setAttribute("EMAIL", usuarioBuscado.getEmail());
 			request.getSession().setAttribute("ID", usuarioBuscado.getId());
 			request.getSession().setAttribute("APELLIDO", usuarioBuscado.getApellido());
@@ -116,7 +116,7 @@ public class ControladorLogin {
 			model.put("error", error);
 		}
 		
-		request.getSession().setAttribute("idUsuario", paciente.getId() );
+		request.getSession().setAttribute("idUsuario", paciente.getIdUsuario() );
 		request.getSession().setAttribute("NOMBRE_PACIENTE", paciente.getNombre() );
 		
 		model.put("listadoPacientes", listadoPacientes);
