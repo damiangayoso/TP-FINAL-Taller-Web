@@ -32,7 +32,7 @@
 					<form:input path="email" id="email" type="email" class="form-control" />
 					<form:label path="password">Password:</form:label>
 					<form:input path="password" type="password" id="password" class="form-control"/>     		  
-					
+					<br>
 					<button class="btn btn-lg btn-primary btn-block" Type="Submit"/>Login</button>
 				</form:form>
 

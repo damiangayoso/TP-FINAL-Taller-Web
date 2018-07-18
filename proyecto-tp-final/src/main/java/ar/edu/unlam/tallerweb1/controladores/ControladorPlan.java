@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -49,8 +51,15 @@ public class ControladorPlan {
 	public ModelAndView cargarDatosRoot(HttpServletRequest request) {
 		ModelMap model = new ModelMap();
 		
+		//metodo que agrega los Planes
 		servicioPacientes.insertarPlanesIniciales();
-	
+		
+		// servicio para obtener listado de pacientes
+		List<Paciente> listadoPacientes = servicioPacientes.obtenerListadoPacientes();
+		Paciente paciente = new Paciente();
+		model.put("paciente", paciente);
+		model.put("listadoPacientes", listadoPacientes);
+		
 		return new ModelAndView("home", model);
 	}
 	

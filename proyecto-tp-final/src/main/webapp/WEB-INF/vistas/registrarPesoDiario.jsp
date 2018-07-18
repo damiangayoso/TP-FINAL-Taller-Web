@@ -17,10 +17,10 @@
 			<h1 class="logo">Registrar Peso Diario</h1>
 			<nav>
                  <ul class="container">
-                    <li><a href="home">Inicio</a></li>
+                    <li><a class="btn" href="home">Inicio</a></li>
                     <c:if test="${ROL=='medico'}" >
                     	<li><a class="btn" href="registrarusuario">Registrar Paciente</a></li>  
-                    	<li><a class="btn" href="registrarPesoDiario">Registrar Peso Diario</a></li>
+                    	<li><a class="btn active white" href="registrarPesoDiario">Registrar Peso Diario</a></li>
                    		<li><a class="btn" href="progresoSeleccionarPaciente">Ver Progreso</a></li>
                    	</c:if>
                     <c:if test="${ROL!='medico'}" >

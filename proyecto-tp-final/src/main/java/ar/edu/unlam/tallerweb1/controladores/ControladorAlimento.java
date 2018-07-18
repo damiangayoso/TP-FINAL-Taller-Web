@@ -24,11 +24,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.*;
 import ar.edu.unlam.tallerweb1.servicios.ServicioAlimentos;
+import ar.edu.unlam.tallerweb1.servicios.ServicioPacientes;
 
 @Controller
 public class ControladorAlimento {
 	@Inject
 	private ServicioAlimentos servicioAlimentos;
+	
+	@Inject
+	private ServicioPacientes servicioPacientes;
 
 	@RequestMapping(path = "/registrarConsumoAlimento", method = RequestMethod.GET)
 	public ModelAndView irAregistrarConsumoAlimento() {
@@ -124,6 +128,12 @@ public class ControladorAlimento {
 		registroComida.setHora(hora);
 		
 		servicioAlimentos.guardarRegistroComida(registroComida);
+		
+		// servicio para obtener listado de pacientes
+		List<Paciente> listadoPacientes = servicioPacientes.obtenerListadoPacientes();
+		Paciente paciente = new Paciente();
+		model.put("paciente", paciente);
+		model.put("listadoPacientes", listadoPacientes);
 		
 		return new ModelAndView("home", model);
 	}
