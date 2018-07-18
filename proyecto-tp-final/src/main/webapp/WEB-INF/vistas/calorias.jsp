@@ -31,31 +31,59 @@
 	
 		<div class = "main container">	
 		
-			<div id="" class="mainbox col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+			<div id="" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 			
 			<h3 class="">Registrar Comida</h3>
+			<hr class="colorgraph">
 			
 			<form:form action="registrarComida" method="POST" modelAttribute="alimentoDTO">
-				<lavel for="comida">Comida</lavel>
-				<br>
-					${comida.nombre} -> Cantidad: ${cantComida} -> 
-					calorias:<b>${comida.caloriasPorPorcion*cantComida} KiloCalorias</b>
-					
-				<br>
-				<lavel for="bebida">Bebida</lavel>
-				<br>
-					${bebida.nombre} -> Cantidad: ${cantBebida} -> 
-					calorias: <b>${bebida.caloriasPorPorcion*cantBebida} KiloCalorias</b>
-				<br>
-					Total de Calorias: ${totalCalorias}
-				<br>
 				
+			<table class="table container">
+			<tbody>
+				  <thead>
+				    <tr>
+				      <th scope="col">Comida</th>
+				      <th scope="col">Kcal</th>
+				      <th scope="col">Cant</th>
+				      <th scope="col">Totales</th>
+				    </tr>
+				  </thead>
+				    <tr>
+				      <th scope="col">${comida.nombre}</th>
+				      <th scope="col">${comida.caloriasPorPorcion}</th>
+				      <th scope="col">${cantComida}</th>
+				      <th scope="col">${comida.caloriasPorPorcion*cantComida}</th>
+				    </tr>
+				    <tr>
+				      <th scope="col">Bebida</th>
+				      <th scope="col"></th>
+				      <th scope="col"></th>
+				      <th scope="col"></th>
+				    </tr>
+				    <tr>
+				      <th scope="col">${bebida.nombre}</th>
+				      <th scope="col">${bebida.caloriasPorPorcion}</th>
+				      <th scope="col">${cantBebida}</th>
+				      <th scope="col">${bebida.caloriasPorPorcion*cantBebida}</th>
+				    </tr>
+				    <tr>
+				      <th scope="col"><b>Total Kcal Comida</b></th>
+				      <th scope="col"></th>
+				      <th scope="col"></th>
+				      <th scope="col">${totalCalorias}</th>
+				    </tr>
+				   </tbody>
+				  <tbody>
+			  </table>
+			  	<c:if test="${totalCalorias >400 }">
+			  		<h4 class="center"style="color:red">Advertencia!<br>Estas consumiendo demasiadas calorias</h4>
+				</c:if>
 				<form:input type="hidden" path="comida.id" value="${comida.id}"/>
 				<form:input type="hidden" path="cantComida" value="${cantComida}"/>
 				<form:input type="hidden" path="bebida.id" value="${bebida.id}"/>
 				<form:input type="hidden" path="cantBebida" value="${cantBebida}"/>
 				<form:input type="hidden" path="totalCalorias" value="${totalCalorias}"/>
-				
+				<br>
 				<button class="btn btn-lg btn-primary btn-block" Type="Submit">Registrar</button>
 			
 			</form:form>
