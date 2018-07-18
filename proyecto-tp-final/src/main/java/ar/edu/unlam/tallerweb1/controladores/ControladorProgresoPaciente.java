@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -16,11 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.CompararProgresoDTO;
 import ar.edu.unlam.tallerweb1.modelo.Formula;
 import ar.edu.unlam.tallerweb1.modelo.Paciente;
-import ar.edu.unlam.tallerweb1.modelo.PacienteDTO;
+
 import ar.edu.unlam.tallerweb1.modelo.Plan;
 import ar.edu.unlam.tallerweb1.modelo.ProgresoPesoIdeal;
-import ar.edu.unlam.tallerweb1.modelo.RegistrarPesoDiarioDTO;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
+
 import ar.edu.unlam.tallerweb1.servicios.ServicioPacientes;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPlan;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRegistrarPesoDiario;

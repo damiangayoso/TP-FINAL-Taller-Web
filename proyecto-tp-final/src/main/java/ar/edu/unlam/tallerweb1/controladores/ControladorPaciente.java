@@ -30,6 +30,7 @@ public class ControladorPaciente {
 	
 	@RequestMapping(path = "/paciente", method = RequestMethod.GET)
 	public ModelAndView irAPaciente() {
+		
 		ModelMap model = new ModelMap();
 		PacienteDTO pacienteDTO = new PacienteDTO();
 		Paciente paciente = new Paciente();
