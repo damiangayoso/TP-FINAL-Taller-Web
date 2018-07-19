@@ -31,9 +31,9 @@ public class UsuarioTest extends SpringTest{
        
         getSession().save(usuario);
               
-        //Usuario prueba = new Usuario();
+        Usuario prueba = new Usuario();
         
-        Usuario resultado = dao.consultarUsuario(usuario);
+        Usuario resultado = dao.consultarUsuario(prueba);
        
         assertThat(resultado).isNotNull();     
     }
