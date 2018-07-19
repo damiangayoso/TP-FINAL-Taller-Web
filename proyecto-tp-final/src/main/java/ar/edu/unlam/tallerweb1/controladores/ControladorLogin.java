@@ -18,6 +18,7 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPacientes;
 //import ar.edu.unlam.tallerweb1.servicios.ServicioRegistrarPesoDiario;
+import ar.edu.unlam.tallerweb1.servicios.ServicioPlan;
 
 @Controller
 public class ControladorLogin {
@@ -31,7 +32,14 @@ public class ControladorLogin {
 	//@Inject
 	//private ServicioRegistrarPesoDiario servicioRegistrarPesoDiario;
 
-
+	public void setServicioLogin(ServicioLogin servicioLogin) {
+		this.servicioLogin = servicioLogin;
+	}
+	
+	public void setServicioPacientes(ServicioPacientes servicioPacientes) {
+		this.servicioPacientes = servicioPacientes;
+	}
+	
 	@RequestMapping("/login")
 	public ModelAndView irALogin() {
 
@@ -49,6 +57,7 @@ public class ControladorLogin {
 
 		Usuario usuarioBuscado = servicioLogin.consultarUsuario(usuario);
 		if (usuarioBuscado != null) {
+
 			request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
 
 			request.getSession().setAttribute("idUsuario", usuarioBuscado.getId() );
@@ -62,7 +71,7 @@ public class ControladorLogin {
 			List<Paciente> listadoPacientes = servicioPacientes.obtenerListadoPacientes();
 			model.put("paciente",new Paciente() );
 			model.put("listadoPacientes", listadoPacientes);
-			
+
 			return new ModelAndView("home",model);
 		} else {
 			// si el usuario no existe agrega un mensaje de error en el modelo.
