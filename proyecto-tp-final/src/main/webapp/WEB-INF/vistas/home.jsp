@@ -22,7 +22,7 @@
                     	<li><a class="btn" href="registrarPesoDiario">Registrar Peso Diario</a></li>
                    		<li><a class="btn" href="progresoSeleccionarPaciente">Ver Progreso</a></li>
                    	</c:if>
-                    <c:if test="${ROL!='medico'}" >
+                    <c:if test="${ROL!='medico' && idUsuario!=null}" >
                     	<li><a class="btn" href="verplan">Ver Plan</a></li>
                     	<li><a class="btn" href="registrarConsumoAlimento">Registrar Comida</a></li>
                     </c:if>

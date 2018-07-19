@@ -31,8 +31,16 @@ public class ControladorAlimento {
 	@Inject
 	private ServicioAlimentos servicioAlimentos;
 	
+	public void setServicioAlimentos(ServicioAlimentos servicioAlimentos) {
+		this.servicioAlimentos = servicioAlimentos;
+	}
+
 	@Inject
 	private ServicioPacientes servicioPacientes;
+
+	public void setServicioPacientes(ServicioPacientes servicioPacientes) {
+		this.servicioPacientes = servicioPacientes;
+	}
 
 	@RequestMapping(path = "/registrarConsumoAlimento", method = RequestMethod.GET)
 	public ModelAndView irAregistrarConsumoAlimento() {
@@ -68,7 +76,7 @@ public class ControladorAlimento {
 		alimentoDTO.setCantComida(cantComida);
 		alimentoDTO.setCantBebida(cantBebida);
 		
-		int totalCalorias=alimentoDTO.getComida().caloriasPorPorcion * cantComida + alimentoDTO.getBebida().getCaloriasPorPorcion()*cantBebida;
+		int totalCalorias=alimentoDTO.getComida().getCaloriasPorPorcion()*cantComida + alimentoDTO.getBebida().getCaloriasPorPorcion()*cantBebida;
 		model.put("totalCalorias", totalCalorias);
 		
 		alimentoDTO.setTotalCalorias(totalCalorias);
