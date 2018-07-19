@@ -1,5 +1,10 @@
 language: java
 
+  addons:
+  hosts:
+    - mockito-cd
+  hostname: mockito-cd
+
 notifications:
   email: false
 
@@ -13,7 +18,4 @@ script:
   - cd proyecto-tp-final
   - mvn install -B -V -e
   
-  addons:
-  hosts:
-    - mockito-cd
-  hostname: mockito-cd
+
