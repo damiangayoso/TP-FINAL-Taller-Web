@@ -50,6 +50,6 @@ public class ControladorLoginTestMock extends SpringTest{
 		
 		ModelAndView modelAndView = miControlador.validarLogin(usuarioMock, requestMock);
 
-		assertThat(modelAndView.getViewName() ).isEqualTo("home");
+		assertThat(modelAndView.getViewName() ).isEqualTo("hoe");
 	}
 }
