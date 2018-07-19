@@ -78,6 +78,9 @@
 			  	<c:if test="${totalCalorias >400 }">
 			  		<h4 class="center"style="color:red">Advertencia!<br>Estas consumiendo demasiadas calorias</h4>
 				</c:if>
+				<c:if test="${totalCalorias <=400 }">
+			  		<h4 class="center"style="color:green">Bien!<br>Esta cantidad de calorias se ajusta a tu plan</h4>
+				</c:if>
 				<form:input type="hidden" path="comida.id" value="${comida.id}"/>
 				<form:input type="hidden" path="cantComida" value="${cantComida}"/>
 				<form:input type="hidden" path="bebida.id" value="${bebida.id}"/>

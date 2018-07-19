@@ -16,6 +16,9 @@
 			<h1 class="logo">Control Nutricional</h1>
             <nav>
                  <ul class="container">
+                 	<c:if test="${ID==null}">
+                    	<li><a class="btn active white" href="login">Login</a></li>
+                    </c:if>
                     <li><a class="btn active white" href="home">Inicio</a></li>
                     <c:if test="${ROL=='medico'}" >
                     	<li><a class="btn" href="registrarusuario">Registrar Paciente</a></li>  
