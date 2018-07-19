@@ -1,10 +1,5 @@
 language: java
 
-  addons:
-  hosts:
-    - mockito-cd
-  hostname: mockito-cd
-
 notifications:
   email: false
 
