@@ -12,3 +12,8 @@ before_script:
 script: 
   - cd proyecto-tp-final
   - mvn install -B -V -e
+  
+  addons:
+  hosts:
+    - mockito-cd
+  hostname: mockito-cd

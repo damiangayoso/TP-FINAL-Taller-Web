@@ -33,7 +33,7 @@ public class ControladorAlimentoTestMock extends SpringTest{
 
 		ModelAndView modelAndView = miControlador.irAregistrarConsumoAlimento();
 
-		assertThat(modelAndView.getViewName() ).isEqualTo("registrarConsumoAlimento");
+		assertThat(modelAndView.getViewName() ).isEqualTo("registrarConsumoAlimento-MAL");
 		
 	}
 	

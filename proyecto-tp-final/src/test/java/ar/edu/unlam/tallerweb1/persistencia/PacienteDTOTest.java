@@ -35,7 +35,7 @@ public class PacienteDTOTest extends SpringTest{
 		System.out.println(imc);
 		System.out.println(estado);
 		
-		assertEquals(estado,"bajo peso");
+		assertEquals(estado,"sobrepeso");
 		
 	}
 	
