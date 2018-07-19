@@ -21,7 +21,7 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPacientes;
 
-public class ControladorLoginTestMock extends SpringTest{
+public class MockControladorLoginTest extends SpringTest{
 	
 	@Test @Rollback @Transactional
 	public void testQuePruebaValidarLogin(){

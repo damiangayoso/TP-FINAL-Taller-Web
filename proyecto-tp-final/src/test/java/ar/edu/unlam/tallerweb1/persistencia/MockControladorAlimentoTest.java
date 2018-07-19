@@ -15,7 +15,7 @@ import ar.edu.unlam.tallerweb1.controladores.ControladorAlimento;
 import ar.edu.unlam.tallerweb1.modelo.Alimento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioAlimentos;
 
-public class ControladorAlimentoTestMock extends SpringTest{
+public class MockControladorAlimentoTest extends SpringTest{
 
 	@Test @Rollback @Transactional
 	public void testQuePruebairAregistrarConsumoAlimento(){

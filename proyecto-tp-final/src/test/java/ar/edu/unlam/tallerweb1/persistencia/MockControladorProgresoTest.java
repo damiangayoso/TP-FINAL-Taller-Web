@@ -18,7 +18,7 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioRegistrarPesoDiario;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ControladorProgresoTestMock extends SpringTest {
+public class MockControladorProgresoTest extends SpringTest {
 
 	@Test @Rollback @Transactional
 	public void testQuePruebaVerProgresoPaciente(){
